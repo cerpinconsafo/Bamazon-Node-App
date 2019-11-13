@@ -14,6 +14,7 @@
 ## Working App
 
 Each video demos that specific part of the assignment.
+I highly encourage setting the watch speed to 1.25 XD
 
 [Part 1 - Bamazon Customer](https://youtu.be/xWQm6BX_7_4)
 

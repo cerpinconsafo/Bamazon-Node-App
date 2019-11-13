@@ -13,11 +13,24 @@
 
 ## Working App
 
+Each video demos that specific part of the assignment.
+
+[Part 1 - Bamazon Customer](https://youtu.be/xWQm6BX_7_4)
+
+[Part 2 - Bamazon Manager] //coming soon
+
+[Part 3 - Bamazon Departments] //coming soon
+
 
 
 ----
 
 ## Updates
+
+Last Update: 11-13-19
+
+This commit contains a working part 1, and an in-progress part 2.
+
 
 
 ----
@@ -139,7 +152,7 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
 ## Problems
 
-I struggled heavily with this assignment.  I was able to get a response from the AJAX call with ease, but it was manipulating the data of the response with jQuery that really challenged me.  All in all, I enjoyed working through this, and it helped really push my jQuery understanding.
+Follow the path in which you are calling connection.end(), it can get very tricky with embedded functions and calls.
 
 ----
 

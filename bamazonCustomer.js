@@ -49,7 +49,7 @@ function promtStart() {
 
         }])
         .then(function(answer) {
-            //we set these variables to easily access our customer's choices from the promt
+            //we set these variables to easily access our customer's choices from the prompt
             let item = answer.itemId;
             let quantity = answer.custQuantity;
             //these variables will help give the order totals to our user and database
@@ -76,7 +76,7 @@ function promtStart() {
 ------------------------------
 ------------------------------
 `);
-                    //fires the promts again so they can try to make another purchase
+                    //fires the prompts again so they can try to make another purchase
                     showNoTable();
 
                 } else {

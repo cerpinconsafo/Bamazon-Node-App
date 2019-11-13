@@ -20,7 +20,16 @@ var connection = mysql.createConnection({
 // connect to the mysql server and sql database
 connection.connect(function(err) {
     if (err) throw err;
-    // run the start function after the connection is made to prompt the user
+    console.log(`
+~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    
+        Welcome to the Green Gatsby Inventory Manager!
+        
+~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    
+    
+    `)
+        // run the start function after the connection is made to prompt the user
     managerPrompt();
 });
 
@@ -28,8 +37,8 @@ function managerPrompt() {
     inquirer.prompt({
             name: "managerList",
             type: "list",
-            message: "Welcome the to InvManager! Select whether you would like to [View Products], [Check Low Inventory], [Add to Inventory], or [Add a Product]",
-            choices: ["View Products", "Check Low Inventory", "Add to Inventory", "Add a Product"]
+            message: "Select one of the following: ",
+            choices: ["View Products", "Check Low Inventory", "Add to Inventory", "Add a Product", "Exit"]
         })
         .then(function(answer) {
             switch (answer.managerList) {
@@ -45,10 +54,27 @@ function managerPrompt() {
                 case "Add a Product":
                     addProduct();
                     break;
+                case "Exit":
+                    connection.end();
+                    console.log(`
+~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+Thanks for using the Green Gatsby Inventory Manager
+
+~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+`);
+                    break;
+
+
 
             }
         })
 }
+//
+//
+//our functions for the switch case live here
+//
+//
 
 
 // function which prompts the user for what action they should take
@@ -57,14 +83,10 @@ function showProducts() {
     connection.query("SELECT * FROM products", function(err, res) {
         console.table(res);
         managerPrompt();
-        connection.end();
-
-
-
-        // once you have the items, prompt the user for which they'd like to bid on
-
     })
 };
+
+// function to show only table rows that have a stock under 25
 
 function checkLowInv() {
     connection.query("Select *FROM products WHERE stock_quantity <=25", function(err, res) {
@@ -76,14 +98,11 @@ function checkLowInv() {
     })
 }
 
+//function to add more of a particular item to the database
 function addInv() {
 
     connection.query("SELECT * FROM products", function(err, res) {
         console.table(res);
-
-
-
-
         inquirer
             .prompt([{
                 name: "itemId",
@@ -102,16 +121,26 @@ function addInv() {
                     let updatedInvQuantity;
 
                     connection.query("SELECT * FROM products WHERE ?", { item_id: item }, function(err, res) {
+                        prodName = res[0].product_name;
                         if (err) throw err;
 
                         let updatedInvQuantity = (res[0].stock_quantity + parseInt(quantity));
 
-                        console.log(`You added ${quantity} of ${res[0].product_name}! Nice! That items inventory count is now ${updatedInvQuantity}! `);
+                        console.log(`
+*****************************
+-----------------------------
+
+You added ${quantity} of ${prodName}! 
+${prodName}'s inventory count is now set to ${updatedInvQuantity}! 
+
+-----------------------------
+*****************************
+`);
 
                         connection.query("Update products set ? where ?", [{ stock_quantity: updatedInvQuantity }, { item_id: item }], function(err, res) {
                             if (err) throw err;
-                            console.log(`The inventory for ${res[0].product_name} was updated!`);
-                            connection.end();
+                            // console.log("stock quantity updated");
+                            managerPrompt()
                         })
 
 
@@ -122,4 +151,70 @@ function addInv() {
 
             )
     });
+}
+
+function addProduct() {
+    inquirer
+        .prompt([{
+                name: "newProdName",
+                type: "input",
+                message: `
+Please enter the name of the product you wish to add
+(ie: Purple-Haze or Game-Dutch-Peach, etc)
+`,
+
+            },
+            {
+                name: "newProdDepartment",
+                type: "list",
+                message: "Select one of the following: ",
+                choices: ["Plant-Material", "Accessories", "Materials"]
+            },
+            {
+                name: "newProdPrice",
+                type: "input",
+                message: "Please specify a PPU for the new item: ",
+
+            },
+            {
+                name: "newProdQuantity",
+                type: "input",
+                message: "Please enter the amount you wish to add to the inventory: ",
+
+            }
+        ])
+        .then(function(answer) {
+            //we set these variables to easily access our customer's choices from the prompt
+            let newProd = answer.newProdName;
+            let newDep = answer.newProdDepartment;
+            let newPrice = answer.newProdPrice;
+            let newQuantity = answer.newProdQuantity;
+            //these variables will help keep track of our new item values
+
+            let query = connection.query("INSERT INTO products SET ?", {
+                    product_name: newProd,
+                    department_name: newDep,
+                    price: newPrice,
+                    stock_quantity: newQuantity
+                },
+                function(err, res) {
+                    if (err) throw err;
+
+                    console.log(`
+*****************************
+-----------------------------
+
+    You have successfully added ${newQuantity} ${newProd} to the ${newDep} Department, with a PPU of ${newPrice}!      
+    
+*****************************
+-----------------------------
+`);
+                    managerPrompt();
+                }
+            );
+            // logs the actual query being run
+            // console.log(query.sql);
+
+
+        });
 }

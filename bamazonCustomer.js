@@ -23,7 +23,7 @@ connection.connect(function(err) {
     console.log(`
 ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
-    Welcome to the Green Gatsby, a Premium New Jersey Marijuana Dispensary!
+        Welcome to the Green Gatsby, a Premium New Jersey Marijuana Dispensary!
     
 ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 `)
@@ -68,10 +68,10 @@ function promtStart() {
 ------------------------------
 ------------------------------
 
-    I'm sorry, we are unable to fufill the amount you request.  
-        You requested ${quantity}, and our store only has ${stock} of ${prodName} in stock!
-        Please enter an amount less than or equal to ${stock} if you wish to purchase ${prodName}!
-    Thank you!
+        I'm sorry, we are unable to fufill the amount you request.  
+            You requested ${quantity}, and our store only has ${stock} of ${prodName} in stock!
+            Please enter an amount less than or equal to ${stock} if you wish to purchase ${prodName}!
+        Thank you!
 
 ------------------------------
 ------------------------------
@@ -87,9 +87,9 @@ function promtStart() {
 ------------------------------                    
 ------------------------------
 
-    Thank you for your purchase!
-        Your cart now contains ${quantity} of ${prodName}! Nice! 
-        Your total is ${userCost} dollars!
+        Thank you for your purchase!
+            Your cart now contains ${quantity} of ${prodName}! Nice! 
+            Your total is ${userCost} dollars!
 
 ------------------------------                    
 ------------------------------
@@ -159,7 +159,7 @@ function continueShopping() {
                     connection.end();
                     console.log(` 
 *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-     Thanks again for checking us out!  See you soon!             
+        Thanks again for checking us out!  See you soon!             
 ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~`)
                     break;
             }

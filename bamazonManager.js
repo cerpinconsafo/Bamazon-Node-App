@@ -58,9 +58,7 @@ function managerPrompt() {
                     connection.end();
                     console.log(`
 ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-Thanks for using the Green Gatsby Inventory Manager
-
+        Thanks for using the Green Gatsby Inventory Manager
 ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 `);
                     break;
@@ -130,8 +128,8 @@ function addInv() {
 *****************************
 -----------------------------
 
-You added ${quantity} of ${prodName}! 
-${prodName}'s inventory count is now set to ${updatedInvQuantity}! 
+        You added ${quantity} of ${prodName}! 
+        ${prodName}'s inventory count is now set to ${updatedInvQuantity}! 
 
 -----------------------------
 *****************************
@@ -159,8 +157,8 @@ function addProduct() {
                 name: "newProdName",
                 type: "input",
                 message: `
-Please enter the name of the product you wish to add
-(ie: Purple-Haze or Game-Dutch-Peach, etc)
+        Please enter the name of the product you wish to add
+            (ie: Purple-Haze or Game-Dutch-Peach, etc)
 `,
 
             },
@@ -204,7 +202,7 @@ Please enter the name of the product you wish to add
 *****************************
 -----------------------------
 
-    You have successfully added ${newQuantity} ${newProd} to the ${newDep} Department, with a PPU of ${newPrice}!      
+        You have successfully added ${newQuantity} ${newProd} to the ${newDep} Department, with a PPU of ${newPrice}!      
     
 *****************************
 -----------------------------

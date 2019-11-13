@@ -15,7 +15,7 @@
 
 Each video demos that specific part of the assignment.
 
-[Part 1 - Bamazon Customer](https://youtu.be/xWQm6BX_7_4){target="_blank"}
+[Part 1 - Bamazon Customer](https://youtu.be/xWQm6BX_7_4{target="_blank"})
 
 [Part 2 - Bamazon Manager](https://youtu.be/NqQN0awJQpc){target="_blank"}
 
